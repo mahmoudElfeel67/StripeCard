@@ -98,9 +98,9 @@ public class STPFormView: UIView, STPFormInputValidationObserver {
         sequentialFields.forEach({ $0.formContainer = self })
         addSubview(vStack)
         NSLayoutConstraint.activate([
-            vStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
             trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
-            vStack.topAnchor.constraint(equalTo: topAnchor),
+            topAnchor.constraint(equalTo: vStack.topAnchor),
             bottomAnchor.constraint(equalTo: vStack.bottomAnchor),
         ])
     }

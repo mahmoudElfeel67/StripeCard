@@ -271,7 +271,7 @@ public class STPCardFormView: STPFormView {
         }
         
         let rows: [[STPFormInput]] = [[numberField],
-                                      [cvcField, expiryField]]
+                                      [expiryField, cvcField]]
         
         let cardParamsSection = STPFormView.Section(rows: rows, title: mergeBillingFields ? nil : STPLocalizedString("Card information", "Card details entry form header title"), accessoryButton: button)
         

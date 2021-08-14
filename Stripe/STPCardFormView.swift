@@ -234,7 +234,6 @@ public class STPCardFormView: STPFormView {
         self.init(numberField: STPCardNumberInputTextField(),
                   cvcField: STPCardCVCInputTextField(),
                   expiryField: STPCardExpiryInputTextField(),
-                  billingAddressSubForm: BillingAddressSubForm(billingAddressCollection: billingAddressCollection),
                   includeCardScanning: includeCardScanning,
                   mergeBillingFields: mergeBillingFields,
                   style: style)
@@ -243,7 +242,6 @@ public class STPCardFormView: STPFormView {
     required init(numberField: STPCardNumberInputTextField,
                   cvcField: STPCardCVCInputTextField,
                   expiryField: STPCardExpiryInputTextField,
-                  billingAddressSubForm: BillingAddressSubForm,
                   includeCardScanning: Bool,
                   mergeBillingFields: Bool,
                   style: STPCardFormViewStyle = .standard
@@ -272,19 +270,15 @@ public class STPCardFormView: STPFormView {
             }
         }
         
-        var rows: [[STPFormInput]] = [[numberField],
+        let rows: [[STPFormInput]] = [[numberField],
                                       [expiryField, cvcField]]
-        if mergeBillingFields {
-            rows.append(contentsOf: billingAddressSubForm.formSection.rows)
-        }
         
         let cardParamsSection = STPFormView.Section(rows: rows, title: mergeBillingFields ? nil : STPLocalizedString("Card information", "Card details entry form header title"), accessoryButton: button)
         
-        super.init(sections: mergeBillingFields ? [cardParamsSection] : [cardParamsSection, billingAddressSubForm.formSection])
+        super.init(sections: [cardParamsSection])
         numberField.addObserver(self)
         cvcField.addObserver(self)
         expiryField.addObserver(self)
-        billingAddressSubForm.formSection.rows.forEach({ $0.forEach({ $0.addObserver(self) }) })
         button?.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
         
         switch style {

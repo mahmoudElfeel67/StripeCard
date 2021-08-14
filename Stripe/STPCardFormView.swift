@@ -406,10 +406,12 @@ public class STPCardFormView: STPFormView {
         sectionViews.forEach { (sectionView) in
             sectionView.stackView.spacing = spacing
         }
+        self.layoutIfNeeded()
     }
     
     public func setVerticalInterSectionsSpacing(spacing: CGFloat) {
         vStack.spacing = spacing
+        self.layoutIfNeeded()
     }
     
     public func set(numberFieldPlaceholder: String) {

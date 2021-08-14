@@ -271,7 +271,7 @@ public class STPCardFormView: STPFormView {
         }
         
         let rows: [[STPFormInput]] = [[numberField],
-                                      [expiryField, cvcField]]
+                                      [cvcField, expiryField]]
         
         let cardParamsSection = STPFormView.Section(rows: rows, title: mergeBillingFields ? nil : STPLocalizedString("Card information", "Card details entry form header title"), accessoryButton: button)
         
@@ -279,6 +279,7 @@ public class STPCardFormView: STPFormView {
         numberField.addObserver(self)
         cvcField.addObserver(self)
         expiryField.addObserver(self)
+        
         button?.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
         
         switch style {
@@ -385,6 +386,48 @@ public class STPCardFormView: STPFormView {
             return false
         }
     }
+    
+    public func set(font: UIFont?) {
+        numberField.font = font
+        expiryField.font = font
+        cvcField.font = font
+    }
+    
+    public func set(borderColor: UIColor) {
+        guard style == .standard else {
+            return
+        }
+        sectionViews.forEach { (sectionView) in
+            sectionView.stackView.separatorColor = borderColor
+        }
+    }
+    
+    public func setHorizontalInterViewsSpacing(spacing: CGFloat) {
+        sectionViews.forEach { (sectionView) in
+            sectionView.stackView.spacing = spacing
+        }
+    }
+    
+    public func setVerticalInterSectionsSpacing(spacing: CGFloat) {
+        vStack.spacing = spacing
+    }
+    
+    public func set(numberFieldPlaceholder: String) {
+        self.numberField.placeholder = numberFieldPlaceholder
+    }
+    
+    public func set(cvcFieldPlaceholder: String) {
+        self.cvcField.placeholder = cvcFieldPlaceholder
+    }
+    
+    public func set(expiryFieldPlaceholder: String) {
+        self.expiryField.placeholder = expiryFieldPlaceholder
+    }
+    
+    public func set(cvcFieldRightView: UIView) {
+        self.cvcField.rightView = cvcFieldRightView
+    }
+    
 }
 
 /// :nodoc:

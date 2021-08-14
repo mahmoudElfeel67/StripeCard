@@ -54,34 +54,6 @@ public class STPCardFormView: STPFormView {
     let cvcField: STPCardCVCInputTextField
     let expiryField: STPCardExpiryInputTextField
     
-    let billingAddressSubForm: BillingAddressSubForm
-    
-    var countryField: STPCountryPickerInputField {
-        return billingAddressSubForm.countryPickerField
-    }
-    
-    var postalCodeField: STPPostalCodeInputTextField {
-        return billingAddressSubForm.postalCodeField
-    }
-    
-    var stateField: STPGenericInputTextField? {
-        return billingAddressSubForm.stateField
-    }
-    
-    var countryCode: String? {
-        didSet {
-            updateCountryCodeValues()
-        }
-    }
-    
-    private func updateCountryCodeValues() {
-        postalCodeField.countryCode = countryCode
-        set(
-            textField: postalCodeField,
-            isHidden: !STPPostalCodeValidator.postalCodeIsRequired(forCountryCode: countryCode),
-            animated: window != nil)
-        stateField?.placeholder = StripeSharedStrings.localizedStateString(for: countryCode)
-    }
     
     var hideShadow: Bool = false {
         didSet {
@@ -178,8 +150,7 @@ public class STPCardFormView: STPFormView {
                   case .valid = expiryField.validator.validationState,
                   let expiryStrings = expiryField.expiryStrings,
                   let monthInt = Int(expiryStrings.month),
-                  let yearInt = Int(expiryStrings.year),
-                  let billingDetails = billingAddressSubForm.billingDetails else {
+                  let yearInt = Int(expiryStrings.year) else {
                 return nil
             }
             
@@ -190,7 +161,7 @@ public class STPCardFormView: STPFormView {
             cardParams.expYear = NSNumber(value: yearInt)
             
             return STPPaymentMethodParams(
-                card: cardParams, billingDetails: billingDetails, metadata: nil)
+                card: cardParams, billingDetails: nil, metadata: nil)
         }
         set {
             if let card = newValue?.card {
@@ -205,9 +176,6 @@ public class STPCardFormView: STPFormView {
                 }
                 if let cvc = card.cvc {
                     cvcField.text = cvc
-                }
-                if let postalCode = newValue?.billingDetails?.address?.postalCode {
-                    postalCodeField.text = postalCode
                 }
             }
         }
@@ -283,7 +251,6 @@ public class STPCardFormView: STPFormView {
         self.numberField = numberField
         self.cvcField = cvcField
         self.expiryField = expiryField
-        self.billingAddressSubForm = billingAddressSubForm
         self.style = style
         
         var button: UIButton? = nil
@@ -319,8 +286,6 @@ public class STPCardFormView: STPFormView {
         expiryField.addObserver(self)
         billingAddressSubForm.formSection.rows.forEach({ $0.forEach({ $0.addObserver(self) }) })
         button?.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
-        countryCode = countryField.inputValue
-        updateCountryCodeValues()
         
         switch style {
         
@@ -358,22 +323,12 @@ public class STPCardFormView: STPFormView {
             } else {
                 return false
             }
-        } else if input == postalCodeField {
-            if case .valid = validationState {
-                if countryCode == "US" {
-                    return true
-                }
-            } else {
-                return false
-            }
         } else if input == cvcField{
             if case .valid = validationState {
                 return (input.validator.inputValue?.count ?? 0) >= STPCardValidator.maxCVCLength(for: cvcField.cardBrand)
             } else {
                 return false
             }
-        } else if billingAddressSubForm.formSection.contains(input) {
-            return false
         }
         return super.shouldAutoAdvance(for: input, with: validationState, from: previousState)
     }
@@ -388,8 +343,6 @@ public class STPCardFormView: STPFormView {
         
         if textField == numberField {
             cvcField.cardBrand = numberField.cardBrand
-        } else if textField == countryField {
-            countryCode = countryField.inputValue
         }
         super.validationDidUpdate(
             to: state, from: previousState, for: unformattedInput, in: textField)
@@ -432,12 +385,6 @@ public class STPCardFormView: STPFormView {
             cvcField.validator.validationState = .invalid(
                 errorMessage: error.userInfo[NSLocalizedDescriptionKey] as? String
                     ?? cvcField.validator.defaultErrorMessage)
-            return true
-            
-        case "incorrect_zip":
-            postalCodeField.validator.validationState = .invalid(
-                errorMessage: error.userInfo[NSLocalizedDescriptionKey] as? String
-                    ?? postalCodeField.validator.defaultErrorMessage)
             return true
             
         default:

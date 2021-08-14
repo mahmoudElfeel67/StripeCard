@@ -91,7 +91,7 @@ public class STPFormView: UIView, STPFormInputValidationObserver {
         super.init(frame: .zero)
 
         vStack.axis = .vertical
-        vStack.distribution = .fillProportionally
+        vStack.distribution = .fill
         vStack.spacing = STPFormView.interSectionSpacing
         vStack.translatesAutoresizingMaskIntoConstraints = false
 

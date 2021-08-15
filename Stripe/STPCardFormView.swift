@@ -271,7 +271,7 @@ public class STPCardFormView: STPFormView {
         }
         
         let rows: [[STPFormInput]] = [[numberField],
-                                      [cvcField, expiryField]]
+                                      [expiryField, cvcField]]
         
         let cardParamsSection = STPFormView.Section(rows: rows, title: mergeBillingFields ? nil : STPLocalizedString("Card information", "Card details entry form header title"), accessoryButton: button)
         
@@ -394,7 +394,12 @@ public class STPCardFormView: STPFormView {
     }
     
     public func set(borderColor: UIColor) {
-        self.backgroundColor = borderColor
+        guard style == .standard else {
+            return
+        }
+        sectionViews.forEach { (sectionView) in
+            sectionView.stackView.separatorColor = borderColor
+        }
     }
     
     public func setHorizontalInterViewsSpacing(spacing: CGFloat) {

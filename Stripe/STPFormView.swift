@@ -91,7 +91,7 @@ public class STPFormView: UIView, STPFormInputValidationObserver {
         super.init(frame: .zero)
 
         vStack.axis = .vertical
-        vStack.distribution = .fill
+        vStack.distribution = .fillProportionally
         vStack.spacing = STPFormView.interSectionSpacing
         vStack.translatesAutoresizingMaskIntoConstraints = false
 
@@ -568,7 +568,7 @@ extension STPFormView {
                 stackView.axis = .horizontal
                 stackView.distribution = .fillEqually
                 stackView.translatesAutoresizingMaskIntoConstraints = false
-                stackView.spacing = 20
+                stackView.spacing = STPFormView.borderWidth
                 stackView.separatorColor = STPInputFormColors.outlineColor
                 return stackView
             }

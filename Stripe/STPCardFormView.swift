@@ -394,9 +394,6 @@ public class STPCardFormView: STPFormView {
     }
     
     public func set(borderColor: UIColor) {
-        guard style == .standard else {
-            return
-        }
         sectionViews.forEach { (sectionView) in
             sectionView.stackView.separatorColor = borderColor
         }

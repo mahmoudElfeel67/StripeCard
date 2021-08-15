@@ -9,6 +9,9 @@
 import UIKit
 
 class STPCardExpiryInputTextFieldValidator: STPInputTextFieldValidator {
+    
+    var invalidMonthErrorMessage = STPLocalizedString("Your card's expiration month is invalid.", "String to describe an invalid month in expiry date.")
+    var invalidYearErrorMessage = STPLocalizedString("Your card's expiration year is invalid.", "String to describe an invalid year in expiry date.")
 
     override init() {
         super.init()
@@ -52,9 +55,9 @@ class STPCardExpiryInputTextFieldValidator: STPInputTextFieldValidator {
                 // TODO: We should be more specific here e.g. "Your card's expiration year is in the past."
                 validationState = .invalid(errorMessage: defaultErrorMessage)
             } else if monthState == .invalid {
-                validationState = .invalid(errorMessage: STPLocalizedString("Your card's expiration month is invalid.", "String to describe an invalid month in expiry date."))
+                validationState = .invalid(errorMessage: invalidMonthErrorMessage)
             } else if yearState == .invalid {
-                validationState = .invalid(errorMessage: STPLocalizedString("Your card's expiration year is invalid.", "String to describe an invalid year in expiry date."))
+                validationState = .invalid(errorMessage: invalidYearErrorMessage)
             } else {
                 validationState = .incomplete(
                     description: !inputValue.isEmpty

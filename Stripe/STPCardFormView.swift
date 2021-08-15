@@ -419,16 +419,29 @@ public class STPCardFormView: STPFormView {
         self.expiryField.tintColor = color
     }
     
-    public func setCardNumberDefaultErrorMessage(_ message: String) {
-        self.numberField.validator.defaultErrorMessage = message
+    public func setCardNumberDefaultErrorMessages(_ defaultMessage: String, incompleteMessage: String) {
+        guard let fieldValidator = numberField.validator as? STPCardNumberInputTextFieldValidator else {
+            return
+        }
+        fieldValidator.defaultErrorMessage = defaultMessage
+        fieldValidator.incompleteErrorMessage = incompleteMessage
     }
     
-    public func setCVCDefaultErrorMessage(_ message: String) {
-        self.cvcField.validator.defaultErrorMessage = message
+    public func setCVCDefaultErrorMessage(_ defaultMessage: String, incompleteMessage: String) {
+        guard let fieldValidator = numberField.validator as? STPCardCVCInputTextFieldValidator else {
+            return
+        }
+        fieldValidator.defaultErrorMessage = defaultMessage
+        fieldValidator.incompleteErrorMessage = incompleteMessage
     }
     
-    public func setExpieryDateDefaultErrorMessage(_ message: String) {
-        self.expiryField.validator.defaultErrorMessage = message
+    public func setExpiryDateDefaultErrorMessage(_ message: String, invalidYearError: String, invalidMonthError: String) {
+        guard let fieldValidator = numberField.validator as? STPCardExpiryInputTextFieldValidator else {
+            return
+        }
+        fieldValidator.defaultErrorMessage = message
+        fieldValidator.invalidMonthErrorMessage = invalidMonthError
+        fieldValidator.invalidYearErrorMessage = invalidYearError
     }
     
 }

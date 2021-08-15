@@ -568,7 +568,7 @@ extension STPFormView {
                 stackView.axis = .horizontal
                 stackView.distribution = .fillEqually
                 stackView.translatesAutoresizingMaskIntoConstraints = false
-                stackView.spacing = STPFormView.borderWidth
+                stackView.spacing = 20
                 stackView.separatorColor = STPInputFormColors.outlineColor
                 return stackView
             }

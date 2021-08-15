@@ -410,7 +410,7 @@ public class STPCardFormView: STPFormView {
     }
     
     public func setVerticalInterSectionsSpacing(spacing: CGFloat) {
-        vStack.spacing = spacing
+        self.sectionViews.forEach { $0.stackView.spacing = spacing}
         self.layoutIfNeeded()
     }
     

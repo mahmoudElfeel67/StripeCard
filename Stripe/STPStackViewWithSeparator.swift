@@ -34,9 +34,9 @@ class STPStackViewWithSeparator: UIStackView {
 
     override var spacing: CGFloat {
         didSet {
-            backgroundView.layer.borderWidth = spacing
-            layoutMargins = UIEdgeInsets(
-                top: spacing, left: spacing, bottom: spacing, right: spacing)
+//            backgroundView.layer.borderWidth = spacing
+//            layoutMargins = UIEdgeInsets(
+//                top: spacing, left: spacing, bottom: spacing, right: spacing)
         }
     }
 

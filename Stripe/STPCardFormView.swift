@@ -424,11 +424,11 @@ public class STPCardFormView: STPFormView {
     }
     
     public func setCVCDefaultErrorMessage(_ message: String) {
-        self.numberField.validator.defaultErrorMessage = message
+        self.cvcField.validator.defaultErrorMessage = message
     }
     
     public func setExpieryDateDefaultErrorMessage(_ message: String) {
-        self.numberField.validator.defaultErrorMessage = message
+        self.expiryField.validator.defaultErrorMessage = message
     }
     
 }

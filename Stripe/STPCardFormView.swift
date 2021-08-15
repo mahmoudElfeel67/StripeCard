@@ -428,15 +428,15 @@ public class STPCardFormView: STPFormView {
     }
     
     public func setCVCDefaultErrorMessage(_ defaultMessage: String, incompleteMessage: String) {
-        guard let fieldValidator = numberField.validator as? STPCardCVCInputTextFieldValidator else {
+        guard let fieldValidator = cvcField.validator as? STPCardCVCInputTextFieldValidator else {
             return
         }
         fieldValidator.defaultErrorMessage = defaultMessage
         fieldValidator.incompleteErrorMessage = incompleteMessage
     }
     
-    public func setExpiryDateDefaultErrorMessage(_ message: String, invalidYearError: String, invalidMonthError: String) {
-        guard let fieldValidator = numberField.validator as? STPCardExpiryInputTextFieldValidator else {
+    public func setExpiryDateDefaultErrorMessage(_ message: String, incompleteMessage: String, invalidYearError: String, invalidMonthError: String) {
+        guard let fieldValidator = expiryField.validator as? STPCardExpiryInputTextFieldValidator else {
             return
         }
         fieldValidator.defaultErrorMessage = message

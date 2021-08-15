@@ -10,8 +10,9 @@ import UIKit
 
 class STPCardExpiryInputTextFieldValidator: STPInputTextFieldValidator {
 
-    override var defaultErrorMessage: String? {
-        return STPLocalizedString(
+    override init() {
+        super.init()
+        defaultErrorMessage = STPLocalizedString(
             "Your card's expiration date is invalid.",
             "Error message for card details form when expiration date is invalid")
     }

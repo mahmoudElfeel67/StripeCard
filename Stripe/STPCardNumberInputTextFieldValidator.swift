@@ -10,10 +10,11 @@ import UIKit
 
 class STPCardNumberInputTextFieldValidator: STPInputTextFieldValidator {
 
-    override var defaultErrorMessage: String? {
-        return STPLocalizedString(
-            "Your card number is invalid.",
-            "Error message for card form when card number is invalid")
+    override init() {
+        super.init()
+        defaultErrorMessage = STPLocalizedString(
+                "Your card number is invalid.",
+                "Error message for card form when card number is invalid")
     }
 
     var cardBrand: STPCardBrand {

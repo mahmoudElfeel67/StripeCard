@@ -10,10 +10,11 @@ import UIKit
 
 class STPCardCVCInputTextFieldValidator: STPInputTextFieldValidator {
 
-    override var defaultErrorMessage: String? {
-        return STPLocalizedString(
-            "Your card's security code is invalid.",
-            "Error message for card entry form when CVC/CVV is invalid")
+    override init() {
+        super.init()
+        defaultErrorMessage = STPLocalizedString(
+                "Your card's security code is invalid.",
+                "Error message for card entry form when CVC/CVV is invalid")
     }
 
     var cardBrand: STPCardBrand = .unknown {

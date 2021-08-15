@@ -10,7 +10,7 @@ import UIKit
 
 class STPPostalCodeInputTextFieldValidator: STPInputTextFieldValidator {
 
-    override var defaultErrorMessage: String? {
+    var _defaultErrorMessage: String? {
         if countryCode?.uppercased() == "US" {
             return STPLocalizedString(
                 "Your ZIP is invalid.",
@@ -31,6 +31,7 @@ class STPPostalCodeInputTextFieldValidator: STPInputTextFieldValidator {
     var countryCode: String? = Locale.autoupdatingCurrent.regionCode {
         didSet {
             updateValidationState()
+            defaultErrorMessage = _defaultErrorMessage
         }
     }
 

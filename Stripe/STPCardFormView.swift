@@ -387,28 +387,14 @@ public class STPCardFormView: STPFormView {
         }
     }
     
-    public func set(font: UIFont?) {
-        numberField.font = font
-        expiryField.font = font
-        cvcField.font = font
-    }
-    
     public func set(borderColor: UIColor) {
         sectionViews.forEach { (sectionView) in
             sectionView.stackView.separatorColor = borderColor
         }
     }
     
-    public func setHorizontalInterViewsSpacing(spacing: CGFloat) {
-        sectionViews.forEach { (sectionView) in
-            sectionView.stackView.spacing = spacing
-        }
-        self.layoutIfNeeded()
-    }
-    
     public func setVerticalInterSectionsSpacing(spacing: CGFloat) {
         self.sectionViews.forEach { $0.stackView.spacing = spacing}
-        self.layoutIfNeeded()
     }
     
     public func set(numberFieldPlaceholder: String) {
@@ -427,18 +413,23 @@ public class STPCardFormView: STPFormView {
         self.cvcField.rightView = cvcFieldRightView
     }
     
-    public func setRTL() {
-        self.cvcField.semanticContentAttribute = .forceRightToLeft
-        self.numberField.semanticContentAttribute = .forceRightToLeft
-        self.expiryField.semanticContentAttribute = .forceRightToLeft
-    }
-    
     public func changeCursorColor(color: UIColor) {
         self.numberField.tintColor = color
         self.cvcField.tintColor = color
         self.expiryField.tintColor = color
     }
     
+    public func setCardNumberDefaultErrorMessage(_ message: String) {
+        self.numberField.validator.defaultErrorMessage = message
+    }
+    
+    public func setCVCDefaultErrorMessage(_ message: String) {
+        self.numberField.validator.defaultErrorMessage = message
+    }
+    
+    public func setExpieryDateDefaultErrorMessage(_ message: String) {
+        self.numberField.validator.defaultErrorMessage = message
+    }
     
 }
 

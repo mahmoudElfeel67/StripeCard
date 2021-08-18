@@ -12,6 +12,9 @@ class STPCardExpiryInputTextFieldValidator: STPInputTextFieldValidator {
     
     var invalidMonthErrorMessage = STPLocalizedString("Your card's expiration month is invalid.", "String to describe an invalid month in expiry date.")
     var invalidYearErrorMessage = STPLocalizedString("Your card's expiration year is invalid.", "String to describe an invalid year in expiry date.")
+    var incompleteErrorMessage = STPLocalizedString(
+        "Your card's expiration date is incomplete.",
+        "Error message for card details form when expiration date isn't entered completely")
 
     override init() {
         super.init()
@@ -61,10 +64,7 @@ class STPCardExpiryInputTextFieldValidator: STPInputTextFieldValidator {
             } else {
                 validationState = .incomplete(
                     description: !inputValue.isEmpty
-                        ? STPLocalizedString(
-                            "Your card's expiration date is incomplete.",
-                            "Error message for card details form when expiration date isn't entered completely"
-                        ) : nil)
+                        ? incompleteErrorMessage : nil)
             }
         }
     }

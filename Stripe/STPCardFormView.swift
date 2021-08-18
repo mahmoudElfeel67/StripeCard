@@ -442,6 +442,8 @@ public class STPCardFormView: STPFormView {
         fieldValidator.defaultErrorMessage = message
         fieldValidator.invalidMonthErrorMessage = invalidMonthError
         fieldValidator.invalidYearErrorMessage = invalidYearError
+        fieldValidator.incompleteErrorMessage = incompleteMessage
+        
     }
     
 }

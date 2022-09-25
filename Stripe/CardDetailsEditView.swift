@@ -26,7 +26,7 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
     var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation {
         didSet {
             if #available(iOS 13.0, macCatalyst 14.0, *) {
-                cardScanningView?.deviceOrientation = deviceOrientation
+                //cardScanningView?.deviceOrientation = deviceOrientation
             }
         }
     }
@@ -76,7 +76,7 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
 //        }
     }
 
-    @available(iOS 13, macCatalyst 14, *)
+    
     lazy var cardScanningView: UIView? = {
 //        if !STPCardScanner.cardScanningAvailable() {
 //            return nil  // Don't initialize the scanner
@@ -99,7 +99,7 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
                     cardScanningView.alpha = 1
                 }
                 self.endEditing(true)
-                cardScanningView.start()
+                //cardScanningView.start()
             }
         }
     }
@@ -117,7 +117,7 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
         // Card scanning button
         if #available(iOS 13.0, macCatalyst 14.0, *) {
             if let cardScanningView = self.cardScanningView {
-                cardScanningView.delegate = self
+                //cardScanningView.delegate = self
                 cardScanningPlaceholderView = cardScanningView
             }
         }
@@ -185,7 +185,7 @@ extension CardDetailsEditView: STPFormViewInternalDelegate {
 
     func formViewWillBecomeFirstResponder(_ form: STPFormView) {
         if #available(iOS 13, macCatalyst 14, *) {
-            cardScanningView?.stop()
+            //cardScanningView?.stop()
         }
     }
 

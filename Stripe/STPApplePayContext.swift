@@ -204,7 +204,7 @@ import PassKit
                 @escaping (PKPaymentRequestShippingMethodUpdate) -> Void
             ) -> Void
         )?
-        return []
+        return [:]
     }
 
     func _end() {

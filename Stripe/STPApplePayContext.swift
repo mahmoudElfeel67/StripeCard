@@ -204,21 +204,7 @@ import PassKit
                 @escaping (PKPaymentRequestShippingMethodUpdate) -> Void
             ) -> Void
         )?
-        let pk_didSelectShippingMethod = #selector(
-            (PKPaymentAuthorizationControllerDelegate.paymentAuthorizationController(
-                _:didSelectShippingMethod:handler:)) as pkDidSelectShippingMethodSignature)
-        let stp_didSelectShippingMethod = #selector(
-            STPApplePayContextDelegate.applePayContext(_:didSelect:handler:))
-        let pk_didSelectShippingContact = #selector(
-            PKPaymentAuthorizationControllerDelegate.paymentAuthorizationController(
-                _:didSelectShippingContact:handler:))
-        let stp_didSelectShippingContact = #selector(
-            STPApplePayContextDelegate.applePayContext(_:didSelectShippingContact:handler:))
-
-        return [
-            pk_didSelectShippingMethod: stp_didSelectShippingMethod,
-            pk_didSelectShippingContact: stp_didSelectShippingContact,
-        ]
+        return []
     }
 
     func _end() {

@@ -54,37 +54,37 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
     }()
 
     // Card scanning
-    @available(iOS 13, macCatalyst 14, *)
+   
     func cardScanningView(
         _ cardScanningView: CardScanningView, didFinishWith cardParams: STPPaymentMethodCardParams?
     ) {
-        if let button = self.lastScanButton {
-            button.isUserInteractionEnabled = true
-        }
-        UIView.animate(withDuration: PaymentSheetUI.defaultAnimationDuration) {
-            self.cardScanningView?.isHidden = true
-            self.cardScanningView?.alpha = 0
-            if let button = self.lastScanButton {
-                button.alpha = 1
-            }
-        }
-
-        if let params = cardParams {
-            self.formView.cardParams = STPPaymentMethodParams.init(
-                card: params, billingDetails: nil, metadata: nil)
-            let _ = self.formView.nextFirstResponderField()?.becomeFirstResponder()
-        }
+//        if let button = self.lastScanButton {
+//            button.isUserInteractionEnabled = true
+//        }
+//        UIView.animate(withDuration: PaymentSheetUI.defaultAnimationDuration) {
+//            self.cardScanningView?.isHidden = true
+//            self.cardScanningView?.alpha = 0
+//            if let button = self.lastScanButton {
+//                button.alpha = 1
+//            }
+//        }
+//
+//        if let params = cardParams {
+//            self.formView.cardParams = STPPaymentMethodParams.init(
+//                card: params, billingDetails: nil, metadata: nil)
+//            let _ = self.formView.nextFirstResponderField()?.becomeFirstResponder()
+//        }
     }
 
     @available(iOS 13, macCatalyst 14, *)
-    lazy var cardScanningView: CardScanningView? = {
-        if !STPCardScanner.cardScanningAvailable() {
-            return nil  // Don't initialize the scanner
-        }
-        let scanningView = CardScanningView()
-        scanningView.alpha = 0
-        scanningView.isHidden = true
-        return scanningView
+    lazy var cardScanningView: UIView? = {
+//        if !STPCardScanner.cardScanningAvailable() {
+//            return nil  // Don't initialize the scanner
+//        }
+//        let scanningView = CardScanningView()
+//        scanningView.alpha = 0
+//        scanningView.isHidden = true
+        return UIView()
     }()
 
     weak var lastScanButton: UIButton?

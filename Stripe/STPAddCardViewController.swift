@@ -116,8 +116,7 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
     private weak var cardImageView: UIImageView?
     private var doneItem: UIBarButtonItem?
     private var cardHeaderView: STPSectionHeaderView?
-    private lazy var cardScanner: STPCardScanner? = nil
-    private lazy var scannerCell: STPCardScannerTableViewCell? = nil
+
 
     private var _isScanning = false
     private var isScanning: Bool {
@@ -329,26 +328,26 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
     }
 
     func setUpCardScanningIfAvailable() {
-        if #available(iOS 13.0, macCatalyst 14, *) {
-            if !STPCardScanner.cardScanningAvailable() || configuration?.cardScanningEnabled != true
-            {
-                return
-            }
-            let scannerCell = STPCardScannerTableViewCell()
-            self.scannerCell = scannerCell
-
-            let cardScanner = STPCardScanner(delegate: self)
-            cardScanner.cameraView = scannerCell.cameraView
-            self.cardScanner = cardScanner
-
-            cardHeaderView?.buttonHidden = false
-            cardHeaderView?.button?.setTitle(
-                STPLocalizedString("Scan Card", "Text for button to scan a credit card"),
-                for: .normal)
-            cardHeaderView?.button?.addTarget(
-                self, action: #selector(scanCard), for: .touchUpInside)
-            cardHeaderView?.setNeedsLayout()
-        }
+//        if #available(iOS 13.0, macCatalyst 14, *) {
+//            if !STPCardScanner.cardScanningAvailable() || configuration?.cardScanningEnabled != true
+//            {
+//                return
+//            }
+//            let scannerCell = STPCardScannerTableViewCell()
+//            self.scannerCell = scannerCell
+//
+//            let cardScanner = STPCardScanner(delegate: self)
+//            cardScanner.cameraView = scannerCell.cameraView
+//            self.cardScanner = cardScanner
+//
+//            cardHeaderView?.buttonHidden = false
+//            cardHeaderView?.button?.setTitle(
+//                STPLocalizedString("Scan Card", "Text for button to scan a credit card"),
+//                for: .normal)
+//            cardHeaderView?.button?.addTarget(
+//                self, action: #selector(scanCard), for: .touchUpInside)
+//            cardHeaderView?.setNeedsLayout()
+//        }
     }
 
     @objc func scanCard() {

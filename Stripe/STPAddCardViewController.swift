@@ -206,9 +206,9 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
         addressViewModel.delegate = self
         title = STPLocalizedString("Add a Card", "Title for Add a Card view")
 
-        if #available(iOS 13.0, macCatalyst 14, *) {
-            cardScanner = STPCardScanner()
-        }
+//        if #available(iOS 13.0, macCatalyst 14, *) {
+//            cardScanner = STPCardScanner()
+//        }
     }
 
     /// :nodoc:
@@ -354,7 +354,7 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
         if #available(iOS 13.0, macCatalyst 14.0, *) {
             view.endEditing(true)
             isScanning = true
-            cardScanner?.start()
+            //cardScanner?.start()
         }
     }
 
@@ -551,7 +551,7 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
     @objc
     public func paymentCardTextFieldDidBeginEditing(_ textField: STPPaymentCardTextField) {
         if #available(iOS 13.0, macCatalyst 14.0, *) {
-            cardScanner?.stop()
+            //cardScanner?.stop()
         }
     }
 
@@ -615,7 +615,7 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
             cell = paymentCell
         case STPPaymentCardSection.stpPaymentCardScannerSection.rawValue:
             if #available(macCatalyst 14, *) {
-                cell = scannerCell
+                //cell = scannerCell
             } else {
                 assertionFailure()
                 cell = UITableViewCell()
@@ -727,7 +727,7 @@ public class STPAddCardViewController: STPCoreTableViewController, STPAddressVie
         if #available(iOS 13.0, macCatalyst 14.0, *) {
             let orientation = UIDevice.current.orientation
             if orientation.isPortrait || orientation.isLandscape {
-                cardScanner?.deviceOrientation = orientation
+                //cardScanner?.deviceOrientation = orientation
             }
             if isScanning {
                 let indexPath = IndexPath(

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CardDetailsEditView: UIView, CardScanningViewDelegate {
+class CardDetailsEditView: UIView{
     let paymentMethodType: STPPaymentMethodType = .card
     weak var delegate: ElementDelegate?
     var shouldSavePaymentMethod: Bool {
@@ -55,26 +55,26 @@ class CardDetailsEditView: UIView, CardScanningViewDelegate {
 
     // Card scanning
    
-    func cardScanningView(
-        _ cardScanningView: CardScanningView, didFinishWith cardParams: STPPaymentMethodCardParams?
-    ) {
-//        if let button = self.lastScanButton {
-//            button.isUserInteractionEnabled = true
-//        }
-//        UIView.animate(withDuration: PaymentSheetUI.defaultAnimationDuration) {
-//            self.cardScanningView?.isHidden = true
-//            self.cardScanningView?.alpha = 0
-//            if let button = self.lastScanButton {
-//                button.alpha = 1
-//            }
-//        }
-//
-//        if let params = cardParams {
-//            self.formView.cardParams = STPPaymentMethodParams.init(
-//                card: params, billingDetails: nil, metadata: nil)
-//            let _ = self.formView.nextFirstResponderField()?.becomeFirstResponder()
-//        }
-    }
+//    func cardScanningView(
+//        _ cardScanningView: CardScanningView, didFinishWith cardParams: STPPaymentMethodCardParams?
+//    ) {
+////        if let button = self.lastScanButton {
+////            button.isUserInteractionEnabled = true
+////        }
+////        UIView.animate(withDuration: PaymentSheetUI.defaultAnimationDuration) {
+////            self.cardScanningView?.isHidden = true
+////            self.cardScanningView?.alpha = 0
+////            if let button = self.lastScanButton {
+////                button.alpha = 1
+////            }
+////        }
+////
+////        if let params = cardParams {
+////            self.formView.cardParams = STPPaymentMethodParams.init(
+////                card: params, billingDetails: nil, metadata: nil)
+////            let _ = self.formView.nextFirstResponderField()?.becomeFirstResponder()
+////        }
+//    }
 
     
     lazy var cardScanningView: UIView? = {
